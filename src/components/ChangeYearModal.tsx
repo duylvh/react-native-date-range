@@ -12,6 +12,10 @@ export type ChangeYearModalProps = {
      * @param primary: The color of texts and icons in change year modal.
      * @param backgroundColor:The background color of change year modal.
      */
+    iconOptions: {
+        upIcon: React.ReactNode;
+        downIcon: React.ReactNode;
+    }
     colorOptions: {
         primary: ColorValue;
         backgroundColor: ColorValue;
@@ -40,6 +44,7 @@ export type ChangeYearModalProps = {
 
 /**
  * This is a component to change the year.
+ * @param {ChangeYearModalProps.iconOptions} iconOptions
  * @param {ChangeYearModalProps.colorOptions} colorOptions - Is an object that receives two keys: `primary` and `backgroundColor`, their values change the color of the texts, icons and background of the modal.
  * @param {ChangeYearModalProps.dismiss} dismiss - Is a function that is executed when the modal is closed.
  * @param {ChangeYearModalProps.displayTime} displayTime - Is the current date to show in the modal.
@@ -48,13 +53,25 @@ export type ChangeYearModalProps = {
  * @param {ChangeYearModalProps.changeYearModalProps} changeYearModalProps - Is a prop that extends the `ModalProps` from `react-native-modal` library.
  * @returns {JSX.Element} Returns a JSX.Element.
  */
-const ChangeYearModal: FC<ChangeYearModalProps> = ({ colorOptions, dismiss, displayTime, isVisible, setDisplayTime, changeYearModalProps }: ChangeYearModalProps) => {
+const ChangeYearModal: FC<ChangeYearModalProps> = ({iconOptions, colorOptions, dismiss, displayTime, isVisible, setDisplayTime, changeYearModalProps }: ChangeYearModalProps) => {
     const { primary, backgroundColor } = colorOptions
     const [year, setYear] = useState(displayTime.getFullYear())
     const onDismiss = () => {
         dismiss()
         const newDate = new Date(year, displayTime.getMonth(), displayTime.getDate())
         setDisplayTime(newDate)
+    }
+
+    let { upIcon, downIcon } = iconOptions || {};
+
+    if (!upIcon || !React.isValidElement(upIcon)) {
+      // prettier-ignore
+      upIcon = <MDicon name={"keyboard-arrow-up"} size={32} color={primary} />
+    }
+  
+    if (!downIcon || !React.isValidElement(downIcon)) {
+      // prettier-ignore
+      downIcon = <MDicon name={"keyboard-arrow-down"} size={32} color={primary} />
     }
 
     return (
@@ -75,7 +92,7 @@ const ChangeYearModal: FC<ChangeYearModalProps> = ({ colorOptions, dismiss, disp
                     style={styles.btn}
                 >
                     <MDicon name={'keyboard-arrow-up'} size={48} color={primary} />
-                    <Text style={styles.prevYearText}>{year - 1}</Text>
+                    {upIcon}
                 </TouchableOpacity>
                 <Text style={[styles.yearText, { color: primary }]}>{year}</Text>
                 <TouchableOpacity
@@ -83,7 +100,7 @@ const ChangeYearModal: FC<ChangeYearModalProps> = ({ colorOptions, dismiss, disp
                     style={styles.btn}
                 >
                     <Text style={styles.nextYearText}>{year + 1}</Text>
-                    <MDicon name={'keyboard-arrow-down'} size={48} color={primary} />
+                    {downIcon}
                 </TouchableOpacity>
             </View>
         </Modal>

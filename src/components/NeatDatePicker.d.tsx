@@ -1,6 +1,14 @@
+import React from "react";
 import { ColorValue, ViewStyle } from "react-native";
 import { i18nLanguages } from "../lib/lib";
 import { Mode } from "./Key";
+
+export type IconOptions = {
+  upIcon: React.ReactNode;
+  downIcon: React.ReactNode;
+  prevIcon: React.ReactNode;
+  nextIcon: React.ReactNode;
+}
 
 export type ColorOptions = {
   /** The background color of date picker and that of change year modal. */
@@ -35,6 +43,7 @@ export type ColorOptions = {
 type DateStringOptions = "ddd mmm dd yyyy HH:MM:ss" | "default" | "m/d/yy" | "shortDate" | "mm/dd/yyyy" | "paddedShortDate" | "mmm d, yyyy" | "mediumDate" | "mmmm d, yyyy" | "longDate" | "dddd, mmmm d, yyyy" | "fullDate" | "h:MM TT" | "shortTime" | "h:MM:ss TT" | "mediumTime" | "h:MM:ss TT Z" | "longTime" | "yyyy-mm-dd" | "isoDate" | "HH:MM:ss" | "isoTime" | "yyyy-mm-dd'T'HH:MM:sso" | "isoDateTime" | "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'" | "isoUtcDateTime" | "ddd, dd mmm yyyy HH:MM:ss Z" | "expiresHeaderFormat"
 
 export type NeatDatePickerProps = {
+  iconOptions?: IconOptions;
   /**
    * The colorOptions prop contains several color settings. It helps you customize the date picker.
    *
