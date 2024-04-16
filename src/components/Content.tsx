@@ -75,7 +75,7 @@ const Content = ({
           onPress={onPrev}
           disabled={btnDisabled}
         >
-          {leftIcon}
+          {prevIcon}
         </TouchableOpacity>
 
         {/* displayed year and month */}
@@ -99,7 +99,7 @@ const Content = ({
           onPress={onNext}
           disabled={btnDisabled}
         >
-          {rightIcon}
+          {nextIcon}
         </TouchableOpacity>
       </View>
 

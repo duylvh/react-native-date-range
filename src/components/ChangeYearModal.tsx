@@ -13,8 +13,8 @@ export type ChangeYearModalProps = {
      * @param backgroundColor:The background color of change year modal.
      */
     iconOptions: {
-        upIcon: React.ReactNode;
-        downIcon: React.ReactNode;
+        upIcon?: React.ReactNode;
+        downIcon?: React.ReactNode;
     }
     colorOptions: {
         primary: ColorValue;

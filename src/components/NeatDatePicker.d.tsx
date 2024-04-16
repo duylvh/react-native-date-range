@@ -4,10 +4,10 @@ import { i18nLanguages } from "../lib/lib";
 import { Mode } from "./Key";
 
 export type IconOptions = {
-  upIcon: React.ReactNode;
-  downIcon: React.ReactNode;
-  prevIcon: React.ReactNode;
-  nextIcon: React.ReactNode;
+  upIcon?: React.ReactNode;
+  downIcon?: React.ReactNode;
+  prevIcon?: React.ReactNode;
+  nextIcon?: React.ReactNode;
 }
 
 export type ColorOptions = {
